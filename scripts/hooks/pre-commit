@@ -1,0 +1,14 @@
+#!/bin/sh
+set -eu
+
+SKIPPERS="CHANGELOG.md"
+
+# Run Pre-Commit checks
+if command -v pre-commit >/dev/null; then
+  task changelog && git add CHANGELOG.md
+  exec git ls-files -- . | grep -vE "${SKIPPERS}" | xargs pre-commit run --files
+  exit 0
+else
+  echo 'pre-commit not found.  brew install pre-commit to have it installed' 1>&2
+  git add -u
+fi

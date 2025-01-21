@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+if [ -z "$1" ]; then
+  echo "Missing argument (commit message). Did you try to run this manually?"
+  exit 1
+fi
+
+grep -qE '^(?:build|ci|chore|deps|docs|feat|fix|hack|style|refactor|perf|test|revert)\(?(?:\w+|\s|\-|_)?\)?!?:\s\w+' "$1" || grep -q 'Merge' "$1" || {
+  echo >&2 '❌ Commit message must be semantic: https://github.com/zeke/semantic-pull-requests' >&2
+  echo >&2 '' >&2
+  echo >&2 'Example: git commit -m "build|ci|chore|docs|feat|fix|hack|style|refactor|perf|test|revert: this is new commit"' >&2
+  exit 1
+}
+echo "✅ Commit looks good"

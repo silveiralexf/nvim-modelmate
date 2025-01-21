@@ -1,0 +1,55 @@
+# default_stages: [commit]
+fail_fast: true
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: detect-private-key
+      - id: check-merge-conflict
+      - id: mixed-line-ending
+      - id: trailing-whitespace
+        exclude_types:
+          - "json"
+      - id: end-of-file-fixer
+        exclude_types:
+          - "json"
+      - id: check-added-large-files
+        args: ["--maxkb=2000"]
+      - id: check-json
+      - id: check-yaml
+  - repo: "https://github.com/google/yamlfmt"
+    rev: v0.13.0
+    hooks:
+      - id: yamlfmt
+        name: yamlfmt
+        description: yamlfmt to format yaml files
+        entry: yamlfmt -conf ./.yamlfmt.yaml
+        language: system
+        pass_filenames: true
+        types: [yaml]
+  - repo: local
+    hooks:
+      - id: requirements-installed
+        name: check for required tooling
+        language: system
+        entry: ./scripts/check-reqs.sh
+        pass_filenames: false
+        types: ["lua", "markdown", "yaml", "json"]
+
+  - repo: local
+    hooks:
+      - id: lint
+        name: lint
+        language: system
+        entry: task lint
+        pass_filenames: false
+        types: [lua]
+
+  - repo: local
+    hooks:
+      - id: fmt
+        name: fmt
+        language: system
+        entry: task fmt
+        pass_filenames: false
+        types: [lua]

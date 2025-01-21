@@ -1,0 +1,42 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: "3"
+dotenv: [".env"]
+vars:
+  SHELL: /usr/bin/env bash -o pipefail
+tasks:
+  default:
+    cmds:
+      - task: list
+    silent: true
+  list:
+    desc: Lists available commands
+    cmds:
+      - task -l
+  hooks:
+    desc: Setup git hooks locally
+    cmds:
+      - cp scripts/hooks/* .git/hooks/
+    silent: true
+  precommit:
+    desc: Verifies and fix requirements for new commits
+    cmds:
+      - scripts/hooks/pre-commit
+  changelog:
+    silent: true
+    desc: Generates CHANGELOG
+    cmds:
+      - echo "Updating Changelog"
+      - cmd: |-
+          git cliff --context \
+          | jq '.[].commits.[] |= (. + {extra: {date: ( .committer.timestamp | strftime("%Y-%m-%d") )}} ) | sort_by(.commits.[].commit.committer.timestamp)' \
+          | jq -S 'walk(if type == "array" then sort_by(.timestamp) | reverse else . end)' \
+          | git cliff --from-context - > CHANGELOG.md
+      - cmd: git add {{.USER_WORKING_DIR}}/CHANGELOG.md
+  lint:
+    desc: run linting
+    cmds:
+      - luacheck lua/ --globals vim
+  fmt:
+    desc: format code
+    cmds:
+      - stylua lua/ --config-path=.stylua.toml --verbose
