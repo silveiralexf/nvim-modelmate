@@ -2,7 +2,11 @@
 
 LLM coding mate for Neovim.
 
+![demo time](./docs/images/demo.gif)
+
 ## Requirements
+
+Ensure the tools listed below, are installed and accessible from Neovim' path.
 
 - [Ollama](https://github.com/ollama/ollama)
 - [AmazonQ CLI](https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/command-line.html)
@@ -11,32 +15,12 @@ LLM coding mate for Neovim.
 
 Use your favorite package manager to install the plugin:
 
-### lazy.nvim
+### LazyVim
 
 ```lua
 {
     'silveiralexf/nvim-modelmate'
 }
-```
-
-### Packer
-
-```lua
-use 'silveiralexf/nvim-modelmate'
-```
-
-### vim-plug
-
-```lua
-Plug 'silveiralexf/nvim-modelmate'
-```
-
-## Setup & configuration
-
-In your `init.vim`, setup the plugin:
-
-```lua
-require('nvim-modelmate').setup {}
 ```
 
 You can provide the following optional configuration table to the `setup`
@@ -52,6 +36,18 @@ function, for setting a different model on Ollama:
       })
     end,
   }
+```
+
+### Packer
+
+```lua
+use 'silveiralexf/nvim-modelmate'
+```
+
+### Vim-Plug
+
+```lua
+Plug 'silveiralexf/nvim-modelmate'
 ```
 
 ## Keybindings
@@ -78,13 +74,19 @@ map('n', '\\mh', '<cmd>ModelQhist<cr>', { desc = 'ModelQ-History ask?' })
 Use on of the following auto-commands for directly chatting in a new
 `Terminal` window where you can start chatting with your LLM.
 
-- `:ModelLlama`
-- `:ModelQ`
-- `:ModelQhist`
-- `:ModelQgit`
+<!-- markdownlint-disable MD013 -->
 
-To exit `Terminal` mode, which by default locks the focus to the terminal
-buffer, use the bindings `Ctrl-\ Ctrl-n`
+| Command       | Description                                                                     |
+| ------------- | ------------------------------------------------------------------------------- |
+| `:ModelLlama` | Creates a chat window to interact with Ollama                                   |
+| `:ModelQ`     | Creates a chat window to interact with AmazonQ                                  |
+| `:ModelQhist` | Interact with AmazonQ with shell history context loaded                         |
+| `:ModelQgit`  | Interact with AmazonQ with current repository git contextual information loaded |
+
+- To interact in the chat session, just enter insert mode with default binding,
+  `<ESC> + i`.
+- To exit `Terminal` mode, which locks the focus within the buffer, use `<CTRL> + \ <CTRL> + n`.
+- To end the session use `<CTRL> + c`.
 
 ## References & Inspirations
 
