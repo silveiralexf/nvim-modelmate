@@ -65,8 +65,10 @@ end
 map('n', '\\m', '', { desc = 'ModelMate' })
 map('n', '\\mo', '<cmd>ModelLlama<cr>', { desc = 'ModelLlama-chat' })
 map('n', '\\mq', '<cmd>ModelQ<cr>', { desc = 'ModelQ-chat' })
-map('n', '\\mg', '<cmd>ModelQgit<cr>', { desc = 'ModelQ-Git ask?' })
-map('n', '\\mh', '<cmd>ModelQhist<cr>', { desc = 'ModelQ-History ask?' })
+map('n', '\\mg', '<cmd>ModelQgit<cr>', { desc = 'ModelQ-Git context' })
+map('n', '\\mm', '<cmd>ModelQgitCommits<cr>', { desc = 'ModelQ-Git Unstaged Commit Msgs' })
+map('n', '\\mh', '<cmd>ModelQhist<cr>', { desc = 'ModelQ-History context' })
+map('n', '\\mw', '<cmd>ModelQWorkspace<cr>', { desc = 'ModelQ-Workspace context' })
 ```
 
 ## Usage
@@ -76,12 +78,14 @@ Use on of the following auto-commands for directly chatting in a new
 
 <!-- markdownlint-disable MD013 -->
 
-| Command       | Description                                                                     |
-| ------------- | ------------------------------------------------------------------------------- |
-| `:ModelLlama` | Creates a chat window to interact with Ollama                                   |
-| `:ModelQ`     | Creates a chat window to interact with AmazonQ                                  |
-| `:ModelQhist` | Interact with AmazonQ with shell history context loaded                         |
-| `:ModelQgit`  | Interact with AmazonQ with current repository git contextual information loaded |
+| Command             | Description                                                                     |
+| ------------------- | ------------------------------------------------------------------------------- |
+| `:ModelLlama`       | Creates a chat window to interact with Ollama                                   |
+| `:ModelQ`           | Creates a chat window to interact with AmazonQ                                  |
+| `:ModelQhist`       | Interact with AmazonQ with shell history context loaded                         |
+| `:ModelQgit`        | Interact with AmazonQ with current repository git contextual information loaded |
+| `:ModelQgitCommits` | Suggest commit messages and PR description based on unstaged changed            |
+| `:ModelQWorkspace`  | Loads current workspace as context for AmazonQ interactive session              |
 
 - To interact in the chat session, just enter insert mode with default binding,
   `<ESC> + i`.
