@@ -51,12 +51,6 @@ function M.run_with_workspace()
       end
     end
   end
-
-  -- Create new buffer for terminal
-  local term_buf = vim.api.nvim_create_buf(false, true)
-  vim.cmd('vsplit')
-  vim.api.nvim_win_set_buf(0, term_buf)
-
   return string.format('q chat "@workspace %s"', table.concat(workspace_files, ' '))
 end
 

@@ -3,11 +3,22 @@
 All notable changes to this project will be documented in this file.
 
 
+## 2025-03-01
+
+### 🚀 Features
+
+- *(q)* \[[c1139ef6](https://github.com/silveiralexf/nvim-modelmate/commit/c1139ef6c47bbdd27a41e667ad9d4ab617c4da43)\] add new commands for context of workspace and commit messages
+
+### 🔨 Fixes
+
+- *(q)* \[[4d772d02](https://github.com/silveiralexf/nvim-modelmate/commit/4d772d021dd9a542b9e4aa704a362e185ce932e7)\] avoid duplicated split buffers on workspace command
+
+
 ## 2025-01-23
 
 ### 📚 Documentation
 
-- *(usage)* \[[d54e7b3d](https://github.com/silveiralexf/nvim-modelmate/commit/d54e7b3ddd23cda99d65f5738bc628ae3782cf26)\] Add gif for demo and improve instructions
+- *(usage)* \[[b6ff4c2b](https://github.com/silveiralexf/nvim-modelmate/commit/b6ff4c2b04df22b0fab01b228400b3b1118f6f3e)\] Add gif for demo and improve instructions
 
 
 ## 2025-01-22
