@@ -1,19 +1,39 @@
+-- lua/nvim-modelmate/settings.lua
 local M = {}
 
-M.namespace = vim.api.nvim_create_namespace('nvim-modelmate')
-
-local defaults = {
-  -- See plugin debugging logs
-  debug = false,
-
-  -- the model to use with Ollama.
-  model = 'llama3:8b',
+M.defaults = {
+  model = 'llama2',
+  included_extensions = {
+    '.lua',
+    '.py',
+    '.js',
+    '.ts',
+    '.jsx',
+    '.tsx',
+    '.java',
+    '.cpp',
+    '.c',
+    '.h',
+    '.hpp',
+    '.rs',
+    '.go',
+    '.md',
+    '.yaml',
+    '.yml',
+    '.json',
+  },
+  excluded_patterns = {
+    'node_modules/',
+    'dist/',
+    'build/',
+    'target/',
+  },
 }
 
-M.current = defaults
+M.current = vim.deepcopy(M.defaults)
 
-function M.set(opts)
-  M.current = vim.tbl_deep_extend('force', defaults, opts or {})
+function M.setup(opts)
+  M.current = vim.tbl_deep_extend('force', M.defaults, opts or {})
 end
 
 return M
