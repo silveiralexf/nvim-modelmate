@@ -15,6 +15,7 @@ function M.setup()
 
   -- Individual commands
   map('n', '\\mo', '<cmd>ModelLlama<cr>', { desc = 'ModelLlama-chat' })
+  map('n', '\\mO', '<cmd>ModelLlamaWorkspace<cr>', { desc = 'ModelLlama-Workspace context' })
   map('n', '\\mq', '<cmd>ModelQ<cr>', { desc = 'ModelQ-chat' })
   map('n', '\\mg', '<cmd>ModelQgit<cr>', { desc = 'ModelQ-Git context' })
   map('n', '\\mm', '<cmd>ModelQgitCommits<cr>', { desc = 'ModelQ-Git Unstaged Commit Msgs' })

@@ -8,8 +8,13 @@ local M = {}
 M.interactive_window = function(context)
   local cmd = {}
   if context == 'llama' then
-    window.create_chat_window()
-    cmd[context] = ollama.run(settings.current.model)
+    -- For regular Ollama chat, we handle the UI in Lua
+    ollama.run(settings.current.model)
+    return -- Early return since we handle the UI ourselves
+  elseif context == 'llama_workspace' then
+    -- For workspace context, we handle the UI in Lua
+    ollama.run_with_workspace(settings.current.model)
+    return -- Early return since we handle the UI ourselves
   elseif context == 'amazonq' then
     window.create_chat_window()
     cmd[context] = amazonq.run()
@@ -33,6 +38,10 @@ end
 local function set_cmds()
   vim.api.nvim_create_user_command('ModelLlama', function()
     M.interactive_window('llama')
+  end, {})
+
+  vim.api.nvim_create_user_command('ModelLlamaWorkspace', function()
+    M.interactive_window('llama_workspace')
   end, {})
 
   vim.api.nvim_create_user_command('ModelQ', function()
@@ -73,4 +82,3 @@ function M.setup(opts)
 end
 
 return M
-

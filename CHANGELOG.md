@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 
 
+## 2025-03-15
+
+### 🚀 Features
+
+- *(ollama)* Add workspace context functionality for Ollama models
+- *(keymaps)* Add new keybinding for Ollama workspace context
+
+### 📚 Documentation
+
+- *(readme)* Update documentation to include new Ollama workspace command and jq requirement
+
+
 ## 2025-03-01
 
 ### 🚀 Features

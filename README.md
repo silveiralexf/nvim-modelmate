@@ -10,6 +10,7 @@ Ensure the tools listed below, are installed and accessible from Neovim' path.
 
 - [Ollama](https://github.com/ollama/ollama)
 - [AmazonQ CLI](https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/command-line.html)
+- [jq](https://jqlang.github.io/jq/) (required for Ollama workspace functionality)
 
 ## Installation
 
@@ -64,6 +65,7 @@ end
 
 map('n', '\\m', '', { desc = 'ModelMate' })
 map('n', '\\mo', '<cmd>ModelLlama<cr>', { desc = 'ModelLlama-chat' })
+map('n', '\\mO', '<cmd>ModelLlamaWorkspace<cr>', { desc = 'ModelLlama-Workspace context' })
 map('n', '\\mq', '<cmd>ModelQ<cr>', { desc = 'ModelQ-chat' })
 map('n', '\\mg', '<cmd>ModelQgit<cr>', { desc = 'ModelQ-Git context' })
 map('n', '\\mm', '<cmd>ModelQgitCommits<cr>', { desc = 'ModelQ-Git Unstaged Commit Msgs' })
@@ -78,14 +80,15 @@ Use on of the following auto-commands for directly chatting in a new
 
 <!-- markdownlint-disable MD013 -->
 
-| Command             | Description                                                                     |
-| ------------------- | ------------------------------------------------------------------------------- |
-| `:ModelLlama`       | Creates a chat window to interact with Ollama                                   |
-| `:ModelQ`           | Creates a chat window to interact with AmazonQ                                  |
-| `:ModelQhist`       | Interact with AmazonQ with shell history context loaded                         |
-| `:ModelQgit`        | Interact with AmazonQ with current repository git contextual information loaded |
-| `:ModelQgitCommits` | Suggest commit messages and PR description based on unstaged changed            |
-| `:ModelQWorkspace`  | Loads current workspace as context for AmazonQ interactive session              |
+| Command                | Description                                                                     |
+| ---------------------- | ------------------------------------------------------------------------------- |
+| `:ModelLlama`          | Creates a chat window to interact with Ollama                                   |
+| `:ModelLlamaWorkspace` | Interact with Ollama with current workspace files loaded as context             |
+| `:ModelQ`              | Creates a chat window to interact with AmazonQ                                  |
+| `:ModelQhist`          | Interact with AmazonQ with shell history context loaded                         |
+| `:ModelQgit`           | Interact with AmazonQ with current repository git contextual information loaded |
+| `:ModelQgitCommits`    | Suggest commit messages and PR description based on unstaged changed            |
+| `:ModelQWorkspace`     | Loads current workspace as context for AmazonQ interactive session              |
 
 - To interact in the chat session, just enter insert mode with default binding,
   `<ESC> + i`.
